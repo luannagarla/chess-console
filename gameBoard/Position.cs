@@ -5,20 +5,20 @@ namespace gameBoard
 {
     class Position
     {
-        public int linha { get; set; }
-        public int coluna { get; set; }
+        public int line { get; set; }
+        public int column { get; set; }
 
-        public Position(int linha, int coluna)
+        public Position(int line, int column)
         {
-            this.linha = linha;
-            this.coluna = coluna;
+            this.line = line;
+            this.column = column;
         }
 
         public override string ToString()
         {
-            return linha
+            return line
             + ", "
-            + coluna;
+            + column;
         }
 
     }

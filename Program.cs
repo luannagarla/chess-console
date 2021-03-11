@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using gameBoard;
 
 namespace xadrez_console
@@ -8,9 +7,11 @@ namespace xadrez_console
     {
         static void Main(string[] args)
         {
-            Position P = new Position (3,4);
+            GameBoard board = new GameBoard(8,8);
 
-            Console.WriteLine(P);
+            Screen.printGameBoard(board);
+
+            
         }
     }
 }
