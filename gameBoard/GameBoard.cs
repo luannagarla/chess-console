@@ -33,6 +33,11 @@ namespace gameBoard
 
         public void putPiece (Piece p, Position pos)
         {
+            if(pieceExist(pos))
+            {
+                throw new BoardException("There is already a piece in that position.");
+            }
+
             pieces[pos.line, pos.column] = p;
             p.position = pos;
         }
