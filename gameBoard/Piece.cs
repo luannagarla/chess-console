@@ -2,7 +2,7 @@ using gameBoard;
 
 namespace gameBoard
 {
-    class Piece
+    class Piece 
     {
         public Position position { get; set; }
         public GameBoard board { get; protected set; }
@@ -10,9 +10,9 @@ namespace gameBoard
         public int movements { get; protected set; }
        
 
-        public Piece(Position position, GameBoard board, Color color)
+        public Piece(GameBoard board, Color color)
         {
-            this.position = position;
+            this.position = null;
             this.board = board;
             this.color = color;
             this.movements = 0;

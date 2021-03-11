@@ -4,13 +4,12 @@ namespace gameBoard
 {
     enum Color
     {
-        Branca,
-        Preta,
-        Amarela,
-        Azul,
-        Vermelha,
-        Verde,
-        Laranja
-
+        Black,
+        White,
+        Yellow,
+        Blue,
+        Red, 
+        Green,
+        Orange
     }
 }
