@@ -1,6 +1,7 @@
 using System;
+//using gameBoard;
 
-namespace GameBoard
+namespace gameBoard
 {
     class Position
     {

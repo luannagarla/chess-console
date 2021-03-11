@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameBoard;
+using gameBoard;
 
 namespace xadrez_console
 {
