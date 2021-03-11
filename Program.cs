@@ -2,7 +2,7 @@
 using gameBoard;
 using chess;
 
-namespace xadrez_console
+namespace chess_console
 {
     class Program
     {
