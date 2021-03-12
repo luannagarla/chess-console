@@ -1,8 +1,6 @@
-using gameBoard;
-
 namespace gameBoard
 {
-    class Piece 
+    abstract class Piece 
     {
         public Position position { get; set; }
         public GameBoard board { get; protected set; }
@@ -18,10 +16,13 @@ namespace gameBoard
             this.movements = 0;
         }
 
-        public void incrementMovement()
-        {
-            movements++;
-        }
+        // public void incrementMovement()
+        // {
+        //     movements++;
+        // }
+
+        public abstract bool[,] possibleMovements();
+        
     }
 
 }

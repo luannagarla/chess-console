@@ -22,7 +22,7 @@ namespace chess
         public void carryOutMovement(Position origin, Position destiny)
         {
             Piece p = board.removePiece(origin);
-            p.incrementMovement();
+            //p.incrementMovements();
             Piece capturedPiece  = board.removePiece(destiny);
 
             board.putPiece(p, destiny);
