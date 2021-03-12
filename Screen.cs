@@ -50,7 +50,7 @@ namespace chess_console
                     Console.Write(piece);
                     Console.ForegroundColor = aux;
                 } 
-                Console.WriteLine(" ");
+                Console.Write(" ");
             }
 
            

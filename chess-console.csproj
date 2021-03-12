@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>xadrez_console</RootNamespace>
+    <RootNamespace>chess_console</RootNamespace>
   </PropertyGroup>
 
 </Project>
