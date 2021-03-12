@@ -17,6 +17,11 @@ namespace gameBoard
             this.color = color;
             this.movements = 0;
         }
+
+        public void incrementMovement()
+        {
+            movements++;
+        }
     }
 
 }

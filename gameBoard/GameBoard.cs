@@ -52,7 +52,7 @@ namespace gameBoard
             Piece aux = piece(pos);
             aux.position = null;
             pieces[pos.line, pos.column] = null;
-            return aux; //aula 159 2:30 :D
+            return aux;   
         }
 
 
