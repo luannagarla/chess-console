@@ -16,10 +16,32 @@ namespace gameBoard
             this.movements = 0;
         }
 
-        // public void incrementMovement()
-        // {
-        //     movements++;
-        // }
+        public void incrementMovements()
+        {
+            movements++;
+        }
+
+        public bool testPossibleMovements()
+        {
+            bool[,] mat = possibleMovements();
+
+            for (int i = 0; i < board.lines; i++)
+            {
+                for (int j = 0; j < board.columns; j++)
+                {
+                   if (mat[i,j])
+                   {
+                       return false;
+                   }
+                }
+            }
+            return true;
+        }
+
+        public bool canMoveTo(Position pos)
+        {
+            return possibleMovements()[pos.line, pos.column];
+        }
 
         public abstract bool[,] possibleMovements();
         
