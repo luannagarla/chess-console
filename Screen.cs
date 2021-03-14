@@ -13,8 +13,14 @@ namespace chess_console
             printGameBoard(chess.board);
             Console.WriteLine();
             printCapturedPieces(chess);
+            Console.WriteLine();
             Console.WriteLine("Turn: "+ chess.turn);
             Console.WriteLine("Awaiting move: " + chess.currentPlayer); 
+
+            if(chess.check)
+            {
+                Console.WriteLine("CHECKMATE!"); 
+            }
         }
 
         public static void printCapturedPieces(ChessMatch chess)
@@ -30,7 +36,6 @@ namespace chess_console
             printSet(chess.captured(Color.Black));
             Console.ForegroundColor = aux;
             
-            Console.WriteLine();
             Console.WriteLine();
         }
 

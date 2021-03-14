@@ -21,6 +21,11 @@ namespace gameBoard
             movements++;
         }
 
+        public void decrementMovements()
+        {
+            movements--;
+        }
+
         public bool testPossibleMovements()
         {
             bool[,] mat = possibleMovements();

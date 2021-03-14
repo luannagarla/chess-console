@@ -11,6 +11,7 @@ namespace chess
         public bool finished {get; private set;}
         private HashSet<Piece> pieces;
         private HashSet<Piece> capturedPieces;
+        public bool check {get; private set;}
 
         public ChessMatch()
         {
@@ -18,12 +19,13 @@ namespace chess
             turn = 1;
             currentPlayer = Color.White;
             finished = false;
+            check = false;
             pieces = new HashSet<Piece>();
             capturedPieces = new HashSet<Piece>();
             putPieces();
         }
 
-        public void carryOutMovement(Position origin, Position destiny)
+        public Piece carryOutMovement(Position origin, Position destiny)
         {
             Piece p = board.removePiece(origin);
             p.incrementMovements();
@@ -35,15 +37,43 @@ namespace chess
             {
                 capturedPieces.Add(capturedPiece);
             }
+
+            return capturedPiece;
+        }
+
+        public void undoMovement(Position origin, Position destiny, Piece capturedPiece)
+        {
+            Piece p = board.removePiece(destiny);
+            p.decrementMovements();
+
+            if(p != null)
+            {
+                board.putPiece(capturedPiece, destiny);
+                capturedPieces.Remove(capturedPiece);
+            }
+            board.putPiece(p, origin);
         }
 
         //pt-br: realiza a jogada
         public void move(Position origin, Position destiny)
         {
-            carryOutMovement(origin, destiny);
+            Piece capturedPiece = carryOutMovement(origin, destiny);
+
+            if(itsCheckMate(currentPlayer)){
+                undoMovement(origin, destiny, capturedPiece);
+                throw new BoardException("You can't put yourself in check.");
+            }
+
+            if(itsCheckMate(adversary(currentPlayer)))
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
 
             turn++;
-
             chancePLayers();
         }
 
@@ -97,6 +127,18 @@ namespace chess
             return aux;
         }
 
+        public Color adversary (Color color)
+        {
+            if(color == Color.White)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+
         public HashSet<Piece> piecesInPlay(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
@@ -111,6 +153,40 @@ namespace chess
             return aux;
         }
 
+        private Piece king(Color color)
+        {
+            foreach (Piece piece in piecesInPlay(color))
+            {
+                if (piece is King)
+                {
+                    return piece;
+                }
+            }
+            return null;
+        }
+
+        public bool itsCheckMate(Color color)
+        {
+            Piece K = king(color);
+            if (K == null)
+            {
+                throw new BoardException("King don't exists.");
+            }
+
+            foreach (Piece piece in piecesInPlay(adversary(color)))
+            {
+                bool[,] mat = piece.possibleMovements();
+
+                if(mat[K.position.line, K.position.column])
+                {
+                    return true;
+                }
+                                              
+            }
+            return false;
+        }
+
+        
         public void putNewPiece(char column, int line, Piece piece)
         {
             board.putPiece(piece, new PositionChess(column, line).toPosition());
