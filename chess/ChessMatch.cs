@@ -46,7 +46,7 @@ namespace chess
             Piece p = board.removePiece(destiny);
             p.decrementMovements();
 
-            if(p != null)
+            if(capturedPiece != null)
             {
                 board.putPiece(capturedPiece, destiny);
                 capturedPieces.Remove(capturedPiece);
@@ -59,12 +59,13 @@ namespace chess
         {
             Piece capturedPiece = carryOutMovement(origin, destiny);
 
-            if(itsCheckMate(currentPlayer)){
+            if(itsCheckmate(currentPlayer))
+            {
                 undoMovement(origin, destiny, capturedPiece);
                 throw new BoardException("You can't put yourself in check.");
             }
 
-            if(itsCheckMate(adversary(currentPlayer)))
+            if(itsCheckmate(adversary(currentPlayer)))
             {
                 check = true;
             }
@@ -73,8 +74,15 @@ namespace chess
                 check = false;
             }
 
-            turn++;
-            chancePLayers();
+            if(testCheckmate(adversary(currentPlayer)))
+            {
+                finished = true;
+            }
+            else
+            {
+               turn++;
+                changePLayers(); 
+            }            
         }
 
         public void validateOriginPosition(Position pos)
@@ -85,9 +93,9 @@ namespace chess
             }
             if (currentPlayer != board.piece(pos).color)
             {
-                throw new BoardException ("The piece of chosen origin is not yours.Press enter to continue...");
+                throw new BoardException ("The piece of chosen origin is not yours. Press enter to continue...");
             }
-            if(board.piece(pos).testPossibleMovements())
+            if(!board.piece(pos).testPossibleMovements())
             {
                 throw new BoardException ("There are no possible movements for the chosen piece of origin. Press enter to continue...");
             }
@@ -101,7 +109,7 @@ namespace chess
            }
         }
 
-        public void chancePLayers()
+        public void changePLayers()
         {
             if(currentPlayer == Color.White)
             {
@@ -127,18 +135,7 @@ namespace chess
             return aux;
         }
 
-        public Color adversary (Color color)
-        {
-            if(color == Color.White)
-            {
-                return Color.Black;
-            }
-            else
-            {
-                return Color.White;
-            }
-        }
-
+       
         public HashSet<Piece> piecesInPlay(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
@@ -153,6 +150,18 @@ namespace chess
             return aux;
         }
 
+         private Color adversary (Color color)
+        {
+            if(color == Color.White)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+
         private Piece king(Color color)
         {
             foreach (Piece piece in piecesInPlay(color))
@@ -165,7 +174,7 @@ namespace chess
             return null;
         }
 
-        public bool itsCheckMate(Color color)
+        public bool itsCheckmate(Color color)
         {
             Piece K = king(color);
             if (K == null)
@@ -186,6 +195,40 @@ namespace chess
             return false;
         }
 
+        public bool testCheckmate(Color color)
+        {
+            if(!itsCheckmate(color))
+            {
+                return false;
+            }
+            foreach (Piece piece in piecesInPlay(color))
+            {
+                bool[,] mat = piece.possibleMovements();
+
+                for (int i = 0; i < board.lines; i++)
+                {
+                    for (int j = 0; j < board.columns; j++)
+                    {
+                        if(mat[i,j])
+                        {   
+                            Position origin = piece.position;
+                            Position destiny = new Position(i,j);
+
+                            Piece capturedPiece = carryOutMovement(origin, destiny);
+
+                            bool testCheck = itsCheckmate(color);
+
+                            undoMovement(origin, destiny, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
         
         public void putNewPiece(char column, int line, Piece piece)
         {

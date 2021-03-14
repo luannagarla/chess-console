@@ -36,11 +36,11 @@ namespace gameBoard
                 {
                    if (mat[i,j])
                    {
-                       return false;
+                       return true;
                    }
                 }
             }
-            return true;
+            return false;
         }
 
         public bool canMoveTo(Position pos)
