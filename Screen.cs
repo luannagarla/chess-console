@@ -110,7 +110,7 @@ namespace chess_console
 
         public static PositionChess readPositionChess()
         {
-            string s = Console.ReadLine();
+            string s = Console.ReadLine().ToLower();
             char column = s[0];
 
             int line = int.Parse(s[1] + "");
