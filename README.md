@@ -47,12 +47,12 @@ _Se você não sabe qual é o diretório, clique com o botão direito em cima da
 
 Sabendo qual diretório será escrito, no pront de comando, digite _cd_ + espaço + o diretório + nome da pasta (Como nesse exemplo: _cd Downloads\chess-console-main_), lembrando que NÃO tem necessidade de escrever "C:\Users\Usuário", uma vez que o terminal já indica estar nesse diretório.
 
-![windows-diretory](Images/windows-directory.jpeg)
+![windows-diretory](Images/windows-directory.png)
 
 No exemplo acima, é possível notar que o terminal já se encontrava em "C:\Users\Usuário", sendo necessário apenas adicionar "cd Donwloads", conforme indicado na propriedade da pasta, e o nome da pasta que foi descompactada.
 Seguidamente, pressione enter e, por fim, escreva, em minúsculo, "dotnet run".
 
-![windows-console](Images/dotnetrun.jpeg)
+![windows-console](Images/dotnetrun.png)
 
 Está pronto para começar a jogar!
 
