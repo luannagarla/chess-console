@@ -22,11 +22,11 @@ Faça o download do repositório e abra a pasta correspondente. Estando com a me
 ### Windows
 Primeiro, certifique-se que o DOTNET está instalado (<a href="https://docs.microsoft.com/pt-br/dotnet/core/install/windows?tabs=net50">Clique aqui para baixá-lo</a>i).
 
-Faça o download do repositório, logo em seguida abra o pront de comando, digite manualmente o diretório em que a pasta se encontra (Exemplo: C:\Windows\Donwloads\chess-console), após isso, escreva "Dotnet Run".
+Faça o download do repositório, logo em seguida abra o pront de comando, digite manualmente o diretório em que a pasta se encontra (Exemplo: C:\Users\SeuNomeDeUsuario\chess-console-main\chess-console-main), após isso, escreva "dotnet Run".
 
 ![windows-diretory](Images/windows-diretory.jpeg)
 
 ![windows-console](Images/windows-console.jpeg)
 
 
-<span style="color: yellow"> Você também pode escolher a IDE de sua preferência. </span>
+##### Você também pode escolher a IDE de sua preferência.
