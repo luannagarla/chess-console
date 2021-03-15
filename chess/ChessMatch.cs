@@ -146,6 +146,21 @@ namespace chess
                 throw new BoardException("You can't put yourself in check.");
             }
 
+            Piece p = board.piece(destiny);
+
+            //Promotion
+            if(p is Pawn)
+            {
+                if((p.color == Color.White && destiny.line == 0) || (p.color == Color.Black && destiny.line == 7))
+                {
+                    p = board.removePiece(destiny);
+                    pieces.Remove(p);
+                    Piece queen = new Queen(board, p.color);
+                    board.putPiece(queen, destiny);
+                    pieces.Add(queen);
+                }
+            }
+
             if(itsCheckmate(adversary(currentPlayer)))
             {
                 check = true;
@@ -166,8 +181,7 @@ namespace chess
             }   
 
             //En passant
-            Piece p = board.piece(destiny);
-
+           
             if (p is Pawn && (destiny.line == origin.line - 2 || destiny.line == origin.line + 2)) 
             {
                 vulnerableEnPassant = p;
