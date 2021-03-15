@@ -6,7 +6,12 @@ namespace chess
 {
     class King : Piece
     {
-        public King (GameBoard board, Color color) : base(board, color) {}
+        private ChessMatch chess;
+
+        public King (GameBoard board, Color color, ChessMatch chess) : base(board, color) 
+        {
+            this.chess = chess;
+        }
 
         public override string ToString ()
         {
