@@ -62,9 +62,12 @@ namespace chess_console
 
         public static void printGameBoard(GameBoard board)
         {
+            ConsoleColor aux = Console.ForegroundColor;
             for(int i = 0; i < board.lines; i++)
-            {
+            {                  
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write(8 - i + " ");
+                Console.ForegroundColor = aux;
 
                 for(int j = 0; j < board.columns; j++)
                 {                       
@@ -72,7 +75,9 @@ namespace chess_console
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("  a b c d e f g h");
+            Console.ForegroundColor = aux;
         }
 
         public static void printGameBoard(GameBoard board, bool[,] possiblePositions)
