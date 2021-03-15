@@ -61,16 +61,16 @@ namespace chess
                     mat[pos.line, pos.column] = true;
                 }
 
-                // #jogadaespecial en passant
+                // En passant
                 if (position.line == 3) 
                 {
                     Position left = new Position(position.line, position.column - 1);
-                    if (board.validPosition(left) && enemy(left) && board.piece(left) == chess.vulneravelEnPassant) 
+                    if (board.validPosition(left) && enemy(left) && board.piece(left) == chess.vulnerableEnPassant) 
                     {
                         mat[left.line - 1, left.column] = true;
                     }
                     Position right = new Position(position.line, position.column + 1);
-                    if (board.validPosition(right) && enemy(right) && board.piece(right) == chess.vulneravelEnPassant) 
+                    if (board.validPosition(right) && enemy(right) && board.piece(right) == chess.vulnerableEnPassant) 
                     {
                         mat[right.line - 1, right.column] = true;
                     }
@@ -99,16 +99,16 @@ namespace chess
                     mat[pos.line, pos.column] = true;
                 }
 
-                // #jogadaespecial en passant
+                //En passant
                 if (position.line == 4) 
                 {
                     Position left = new Position(position.line, position.column - 1);
-                    if (board.validPosition(left) && enemy(left) && board.piece(left) == chess.vulneravelEnPassant) 
+                    if (board.validPosition(left) && enemy(left) && board.piece(left) == chess.vulnerableEnPassant) 
                     {
                         mat[left.line + 1, left.column] = true;
                     }
                     Position right = new Position(position.line, position.column + 1);
-                    if (board.validPosition(right) && enemy(right) && board.piece(right) == chess.vulneravelEnPassant) 
+                    if (board.validPosition(right) && enemy(right) && board.piece(right) == chess.vulnerableEnPassant) 
                     {
                         mat[right.line + 1, right.column] = true;
                     }

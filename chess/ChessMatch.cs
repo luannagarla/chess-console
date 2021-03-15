@@ -12,7 +12,7 @@ namespace chess
         private HashSet<Piece> pieces;
         private HashSet<Piece> capturedPieces;
         public bool check {get; private set;}
-        public Piece vulneravelEnPassant { get; private set; }
+        public Piece vulnerableEnPassant { get; private set; }
 
         public ChessMatch()
         {
@@ -21,7 +21,7 @@ namespace chess
             currentPlayer = Color.White;
             finished = false;
             check = false;
-            vulneravelEnPassant = null;
+            vulnerableEnPassant = null;
             pieces = new HashSet<Piece>();
             capturedPieces = new HashSet<Piece>();
             putPieces();
@@ -61,6 +61,21 @@ namespace chess
                 board.putPiece(R, destinyR);
             }
 
+            //En passant
+            if (p is Pawn) {
+                if (origin.column != destiny.column && capturedPiece == null) {
+                    Position posP;
+                    if (p.color == Color.White) {
+                        posP = new Position(destiny.line + 1, destiny.column);
+                    }
+                    else {
+                        posP = new Position(destiny.line - 1, destiny.column);
+                    }
+                    capturedPiece = board.removePiece(posP);
+                    capturedPieces.Add(capturedPiece);
+                }
+            }
+
 
             return capturedPiece;
         }
@@ -98,6 +113,26 @@ namespace chess
 
                 board.putPiece(R, originR);
             }
+
+            //En passant
+            if(p is Pawn)
+            {
+                if(origin.column != destiny.column && capturedPiece == vulnerableEnPassant)
+                {
+                    Piece pawn = board.removePiece(destiny);
+                    Position posP;
+
+                    if(p.color == Color.White)
+                    {
+                        posP = new Position(3, destiny.column);
+                    }
+                    else
+                    {
+                        posP = new Position(4, destiny.column);
+                    }
+                    board.putPiece(pawn, posP);
+                }
+            }
         }
 
         //pt-br: realiza a jogada
@@ -128,7 +163,19 @@ namespace chess
             {
                turn++;
                 changePLayers(); 
-            }            
+            }   
+
+            //En passant
+            Piece p = board.piece(destiny);
+
+            if (p is Pawn && (destiny.line == origin.line - 2 || destiny.line == origin.line + 2)) 
+            {
+                vulnerableEnPassant = p;
+            }
+            else 
+            {
+                vulnerableEnPassant = null;
+            }
         }
 
         public void validateOriginPosition(Position pos)
