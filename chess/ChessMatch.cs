@@ -39,6 +39,28 @@ namespace chess
             {
                 capturedPieces.Add(capturedPiece);
             }
+            // smal chess castling   
+            if(p is King && destiny.column == origin.column + 2)
+            {
+                Position originR = new Position(origin.line, origin.column + 3);
+                Position destinyR = new Position(origin.line, origin.column + 1);
+                Piece R = board.removePiece(originR);
+                R.incrementMovements();
+
+                board.putPiece(R, destinyR);
+            }
+
+            // big chess castling   
+            if(p is King && destiny.column == origin.column - 2)
+            {
+                Position originR = new Position(origin.line, origin.column - 4);
+                Position destinyR = new Position(origin.line, origin.column - 1);
+                Piece R = board.removePiece(originR);
+                R.incrementMovements();
+
+                board.putPiece(R, destinyR);
+            }
+
 
             return capturedPiece;
         }
@@ -54,6 +76,28 @@ namespace chess
                 capturedPieces.Remove(capturedPiece);
             }
             board.putPiece(p, origin);
+
+            // smal chess castling   
+            if(p is King && destiny.column == origin.column + 2)
+            {
+                Position originR = new Position(origin.line, origin.column + 3);
+                Position destinyR = new Position(origin.line, origin.column + 1);
+                Piece R = board.removePiece(destinyR);
+                R.decrementMovements();
+
+                board.putPiece(R, originR);
+            }
+
+             // big chess castling   
+            if(p is King && destiny.column == origin.column - 2)
+            {
+                Position originR = new Position(origin.line, origin.column - 4);
+                Position destinyR = new Position(origin.line, origin.column - 1);
+                Piece R = board.removePiece(destinyR);
+                R.decrementMovements();
+
+                board.putPiece(R, originR);
+            }
         }
 
         //pt-br: realiza a jogada

@@ -25,6 +25,12 @@ namespace chess
             return p == null || p.color != color;
         }
 
+        public bool testRookToCastling(Position pos)
+        {
+            Piece p = board.piece(pos);
+            return p != null && p is Rook && p.color == color && movements == 0;
+        }
+
         public override bool[,] possibleMovements()
         {
             bool[,] mat = new bool[board.lines, board.columns];
@@ -88,6 +94,41 @@ namespace chess
             {
                 mat[pos.line, pos.column] = true;
             }
+
+            // chess castling
+            if(movements == 0 && !chess.check)
+            {
+                //smal
+                Position posR1 = new Position(position.line, position.column + 3);
+
+                if(testRookToCastling(posR1))
+                {
+                   Position p1 = new Position(position.line, position.column + 1); 
+                   Position p2 = new Position(position.line, position.column + 2);
+
+                   if(board.piece(p1)==null && board.piece(p2)==null)
+                   {
+                       mat[position.line, position.column+2] = true;
+                   }
+                }
+
+                //big
+                Position posR2 = new Position(position.line, position.column - 4);
+
+                if(testRookToCastling(posR2))
+                {
+                   Position p1 = new Position(position.line, position.column - 1); 
+                   Position p2 = new Position(position.line, position.column - 2);
+                   Position p3 = new Position(position.line, position.column - 3);
+
+                   if(board.piece(p1)==null && board.piece(p2)==null && board.piece(p3)==null)
+                   {
+                       mat[position.line, position.column-2] = true;
+                   }
+                }
+                
+            }
+
             
             return mat;
 
