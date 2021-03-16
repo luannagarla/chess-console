@@ -31,17 +31,17 @@ namespace chess_console
                 Console.WriteLine("WINNER: " + chess.currentPlayer);
             }    
 
-            
+           
         }
 
         public static void printCapturedPieces(ChessMatch chess)
         {
             Console.WriteLine("Captured Pieces");
-            Console.Write("White: ");
+            Console.Write("Pieces captured by the black player: ");
             printSet(chess.captured(Color.White));
             Console.WriteLine();
 
-            Console.Write("Black: ");
+            Console.Write("Pieces captured by the white player: ");
             ConsoleColor aux = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             printSet(chess.captured(Color.Black));
@@ -63,6 +63,10 @@ namespace chess_console
         public static void printGameBoard(GameBoard board)
         {
             ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("  a b c d e f g h");
+            Console.ForegroundColor = aux;
+           
             for(int i = 0; i < board.lines; i++)
             {                  
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -73,6 +77,8 @@ namespace chess_console
                 {                       
                     printPiece(board.piece(i,j));                              
                 }
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(8 - i + " ");
                 Console.WriteLine();
             }
             Console.ForegroundColor = ConsoleColor.Blue;

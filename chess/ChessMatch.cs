@@ -143,7 +143,7 @@ namespace chess
             if(itsCheckmate(currentPlayer))
             {
                 undoMovement(origin, destiny, capturedPiece);
-                throw new BoardException("You can't put yourself in check.");
+                throw new BoardException("You can't put yourself in check. PRESS ENTER TO CONTINUE...");
             }
 
             Piece p = board.piece(destiny);
@@ -196,15 +196,15 @@ namespace chess
         {
             if (board.piece(pos) == null)
             {
-                throw new BoardException ("There is no part in the chosen starting position. Press enter to continue...");
+                throw new BoardException ("There is no part in the chosen starting position. PRESS ENTER TO CONTINUE...");
             }
             if (currentPlayer != board.piece(pos).color)
             {
-                throw new BoardException ("The piece of chosen origin is not yours. Press enter to continue...");
+                throw new BoardException ("The piece of chosen origin is not yours. PRESS ENTER TO CONTINUE...");
             }
             if(!board.piece(pos).testPossibleMovements())
             {
-                throw new BoardException ("There are no possible movements for the chosen piece of origin. Press enter to continue...");
+                throw new BoardException ("There are no possible movements for the chosen piece of origin. PRESS ENTER TO CONTINUE...");
             }
         }
 
@@ -212,7 +212,7 @@ namespace chess
         {
            if (!board.piece(origin).canMoveTo(destiny)) 
            {
-               throw new BoardException("Invalid target Position. Press enter to continue...");
+               throw new BoardException("Invalid target Position. PRESS ENTER TO CONTINUE...");
            }
         }
 
@@ -348,12 +348,12 @@ namespace chess
                       
            
             putNewPiece('a', 1, new Rook(board, Color.White));
-            putNewPiece('b', 1, new Horse(board, Color.White));
+            putNewPiece('b', 1, new Knight(board, Color.White));
             putNewPiece('c', 1, new Bishop(board, Color.White));
             putNewPiece('d', 1, new Queen(board, Color.White));
             putNewPiece('e', 1, new King(board, Color.White, this));
             putNewPiece('f', 1, new Bishop(board, Color.White));
-            putNewPiece('g', 1, new Horse(board, Color.White));
+            putNewPiece('g', 1, new Knight(board, Color.White));
             putNewPiece('h', 1, new Rook(board, Color.White));
             putNewPiece('a', 2, new Pawn(board, Color.White, this));
             putNewPiece('b', 2, new Pawn(board, Color.White, this));
@@ -365,12 +365,12 @@ namespace chess
             putNewPiece('h', 2, new Pawn(board, Color.White, this));
 
             putNewPiece('a', 8, new Rook(board, Color.Black));
-            putNewPiece('b', 8, new Horse(board, Color.Black));
+            putNewPiece('b', 8, new Knight(board, Color.Black));
             putNewPiece('c', 8, new Bishop(board, Color.Black));
             putNewPiece('d', 8, new Queen(board, Color.Black));
             putNewPiece('e', 8, new King(board, Color.Black, this));
             putNewPiece('f', 8, new Bishop(board, Color.Black));
-            putNewPiece('g', 8, new Horse(board, Color.Black));
+            putNewPiece('g', 8, new Knight(board, Color.Black));
             putNewPiece('h', 8, new Rook(board, Color.Black));
             putNewPiece('a', 7, new Pawn(board, Color.Black, this));
             putNewPiece('b', 7, new Pawn(board, Color.Black, this));

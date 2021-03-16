@@ -35,7 +35,7 @@ namespace gameBoard
         {
             if(pieceExist(pos))
             {
-                throw new BoardException("There is already a piece in that position.");
+                throw new BoardException("There is already a piece in that position. PRESS ENTER TO CONTINUE...");
             }
 
             pieces[pos.line, pos.column] = p;
@@ -69,7 +69,7 @@ namespace gameBoard
         {
             if (!validPosition(pos))
             {
-                throw new BoardException ("Position invalid!");
+                throw new BoardException ("Position invalid! PRESS ENTER TO CONTINUE...");
             }
 
 

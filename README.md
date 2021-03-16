@@ -1,10 +1,10 @@
 # CHESS-CONSOLE :chess_pawn:
-Famoso jodo de xadrez, feito com C#, disponível para jogar pelo terminal.
+Famoso jogo de xadrez, feito com C#, disponível para jogar pelo terminal.
 No qual o tabuleiro é organizado em linhas de 8 a 1 e colunas de "a" até "h", sendo possível ter o controle de quais peças foram capturadas, qual turno se encontra e de qual jogador é a vez.
 
 ## Peças
 * R (_ROOK_) : TORRE
-* H (_KNIGHT_ / _HORSE_) : CAVALO
+* N (_KNIGHT_) : CAVALO
 * B (BISHOP) : BISPO
 * Q (_QUEEN_) : RAINHA / DAMA
 * K (_KING_) : REI
@@ -12,7 +12,7 @@ No qual o tabuleiro é organizado em linhas de 8 a 1 e colunas de "a" até "h", 
 
 ![chess-console](Images/chess.png)
 
-O jogador indica a peça que deseja mover em _origin_, no estilo batalha naval, desta maneira será indicado para quais lugares a peça poderá mover, o jogador digita o local de destino em _destiny_, dando continuidade ao jogo.
+O jogador indica a peça que deseja mover em _origin_, no estilo batalha naval, onde você é informado a letra da coluna e o número da linha juntos, desta maneira será mostrado para quais lugares a peça poderá mover, o jogador digita o local de destino em _destiny_, dando continuidade ao jogo.
 
 ![chess-console](Images/chess-console.png)
 
@@ -52,7 +52,7 @@ Sabendo qual diretório será escrito, no pront de comando, digite _cd_ + espaç
 No exemplo acima, é possível notar que o terminal já se encontrava em "C:\Users\Usuário", sendo necessário apenas adicionar "cd Donwloads", conforme indicado na propriedade da pasta, e o nome da pasta que foi descompactada.
 Seguidamente, pressione enter e, por fim, escreva, em minúsculo, "dotnet run".
 
-![windows-console](Images/dotnetrun.png)
+![windows-dotnetrun](Images/dotnetrun.png)
 
 Está pronto para começar a jogar!
 
