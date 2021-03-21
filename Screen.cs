@@ -22,7 +22,7 @@ namespace chess_console
 
                 if(chess.check)
                 {
-                    Console.WriteLine("CHECKMATE!"); 
+                    Console.WriteLine("CHECK!"); 
                 }
             }
             else

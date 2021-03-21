@@ -56,6 +56,7 @@ Seguidamente, pressione enter e, por fim, escreva, em minúsculo, "dotnet run".
 
 Está pronto para começar a jogar!
 
+![windows-console](Images/windows-console.png)
 
 _Pode ocorrer de aparecer algumas informações sobre o dotnet ao solicitar "dotnet run", se isso ocorrer aperte tecla direcional para cima e enter._
 
