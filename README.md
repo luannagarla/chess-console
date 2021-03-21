@@ -58,6 +58,6 @@ Está pronto para começar a jogar!
 
 ![windows-console](Images/windows-console.png)
 
-_Pode ocorrer de aparecer algumas informações sobre o dotnet ao solicitar "dotnet run", se isso ocorrer aperte tecla direcional para cima e enter._
+_Pode ocorrer de aparecer algumas informações sobre o dotnet ao solicitar "dotnet run" pela primeira vez, se isso ocorrer aperte tecla direcional para cima e enter. Se mesmo assim ainda der erro, feche o terminal, abra novamente no diretório e dê "dotnet run"._
 
 ##### Você também pode escolher a IDE de sua preferência.
